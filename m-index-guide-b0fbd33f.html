@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>资料整理 · ng28 信息索引页</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f2f4f6;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: #2a2f35;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* -- Hero 区 -- */
+    .hero {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 3.5rem 2.5rem;
+      margin-bottom: 2.2rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03), 0 2px 6px rgba(0,0,0,0.03);
+      border: 1px solid rgba(255,255,255,0.6);
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+      color: #1e2329;
+    }
+
+    .hero .sub {
+      max-width: 640px;
+      margin: 0 auto 1.8rem;
+      font-size: 1.1rem;
+      color: #4a515b;
+      border-left: 4px solid #b0b9c4;
+      padding-left: 1.2rem;
+      text-align: left;
+      background: #f8fafc;
+      border-radius: 0 10px 10px 0;
+      padding: 0.9rem 1.4rem;
+    }
+
+    .hero .mention {
+      display: inline-block;
+      background: #eef1f5;
+      padding: 0.45rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      color: #2c3e50;
+      border: 1px solid #dce2ea;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+
+    /* -- 卡片通用 -- */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 1.8rem 1.6rem;
+      border: 1px solid #e5e9ef;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.02);
+      transition: box-shadow 0.2s, transform 0.1s;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+      transform: translateY(-2px);
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.7rem;
+      color: #1e2329;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .card p, .card li {
+      font-size: 0.95rem;
+      color: #3f4751;
+    }
+
+    .card ul {
+      padding-left: 1.2rem;
+      list-style: square;
+    }
+
+    .card ul li {
+      margin-bottom: 0.35rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #e5e9ef;
+      border-radius: 30px;
+      padding: 0.15rem 0.7rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #2a3b4c;
+      letter-spacing: 0.3px;
+      margin-left: 0.3rem;
+    }
+
+    /* -- 说明区（宽卡片） -- */
+    .info-panel {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 2rem 2.2rem;
+      margin-bottom: 2.2rem;
+      border: 1px solid #e5e9ef;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+
+    .info-panel h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #eef2f6;
+      padding-bottom: 0.5rem;
+      color: #1e2329;
+    }
+
+    .info-panel p {
+      margin-bottom: 0.9rem;
+    }
+
+    .info-panel .highlight {
+      background: #f4f7fb;
+      padding: 0.9rem 1.4rem;
+      border-radius: 16px;
+      border-left: 4px solid #98a9bb;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .inline-link {
+      color: #1f5680;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dotted #a8b9cc;
+      transition: border-bottom 0.15s, color 0.15s;
+    }
+
+    .inline-link:hover {
+      color: #0f3858;
+      border-bottom: 1px solid #0f3858;
+    }
+
+    /* -- FAQ 摘要 -- */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .faq-item {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1.3rem 1.5rem;
+      border: 1px solid #e5e9ef;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .faq-item .q {
+      font-weight: 600;
+      color: #1a293b;
+      margin-bottom: 0.25rem;
+      font-size: 1rem;
+    }
+
+    .faq-item .a {
+      color: #4b5766;
+      font-size: 0.93rem;
+      margin-top: 0.15rem;
+    }
+
+    /* -- 底部 -- */
+    .footer-links {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 1.8rem 2rem;
+      border: 1px solid #e5e9ef;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .footer-links .note {
+      color: #5d6877;
+    }
+
+    .footer-links a {
+      color: #1f5680;
+      text-decoration: none;
+      border-bottom: 1px dotted #bcc9d6;
+    }
+
+    .footer-links a:hover {
+      border-bottom: 1px solid #0f3858;
+    }
+
+    /* -- 响应式 -- */
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.8rem; }
+      .hero { padding: 2rem 1.2rem; }
+      .hero h1 { font-size: 1.8rem; }
+      .info-panel { padding: 1.5rem 1.2rem; }
+      .footer-links { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Hero 区 -->
+  <div class="hero">
+    <h1>资料整理 · 信息索引</h1>
+    <div class="sub">
+      从日常浏览、文档片段与收藏夹里，借助 <a href="https://m-index-ng28.com" class="inline-link">ng28</a> 梳理出相对结构化的索引页。方便自己回顾，也方便有类似需求的朋友参考。
+    </div>
+    <div class="mention">
+      📎 基于个人笔记整理 · 内容保持克制
+    </div>
+  </div>
+
+  <!-- 优势区（卡片网格） -->
+  <div class="card-grid">
+    <div class="card">
+      <h3>📋 目录式索引</h3>
+      <p>把散落的信息点按主题归类，建立简单目录。不用每次从头翻找，节省重复检索的时间。</p>
+    </div>
+    <div class="card">
+      <h3>🧩 轻量结构</h3>
+      <p>没有复杂数据库，只靠页面本身承载内容。适合个人站点、小团队内部，或作为兴趣项目的起点。</p>
+    </div>
+    <div class="card">
+      <h3>🔄 可迭代</h3>
+      <p>内容随收集进度更新。今天记下一条，明天补充一段，索引页慢慢变成自己的知识支撑。</p>
+    </div>
+  </div>
+
+  <!-- 说明区 —— 从资料整理的角度 -->
+  <div class="info-panel">
+    <h2>从信息碎片到索引</h2>
+    <p>日常浏览时，看到有用的介绍、功能片段或背景说明，随手复制一段原文或记下关键词。时间久了，文件夹里攒了不少零散的片段。索性整理成一个索引页，把与 <a href="https://m-index-ng28.com" class="inline-link">ng28</a> 相关的内容归类排放——既有摘录，也有自己的简短批注。</p>
+    <div class="highlight">
+      <strong>一点习惯：</strong> 每一条资料都注明来源或上下文，避免二次混淆。索引页不是替代原页面，而是快速定位的起点。
+    </div>
+    <p>如果你也在收集同一类信息，或许可以把这个页面当作一个参照：不追求大而全，只求把已经看过、确认过有价值的内容整理清楚。后续可以根据反馈或自己的新发现，再补充新的卡片和说明。</p>
+  </div>
+
+  <!-- FAQ 摘要区（三个常见问题） -->
+  <h2 style="font-weight:600; font-size:1.25rem; margin: 1.5rem 0 0.8rem 0; color:#1e2329;">❓ 一些简单的 FAQ 摘要</h2>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <div class="q">这个索引页主要放什么？</div>
+      <div class="a">目前以与 <a href="https://m-index-ng28.com" class="inline-link">ng28</a> 有关的介绍、说明、使用片段为主。后续可能加入相关工具链或社区资源。</div>
+    </div>
+    <div class="faq-item">
+      <div class="q">内容更新频率如何？</div>
+      <div class="a">根据个人信息收集节奏，大概一两周补充或修订一次。不保证日更，但每次变化都会体现在页面上。</div>
+    </div>
+    <div class="faq-item">
+      <div class="q">可以复制或转发这里的资料吗？</div>
+      <div class="a">摘录部分均标注了来源（或隐含来源），建议直接访问原始出处。个人笔记性质的段落可以自由引用。</div>
+    </div>
+  </div>
+
+  <!-- 底部链接 -->
+  <div class="footer-links">
+    <span class="note">© 资料索引 · 持续整理中</span>
+    <span>
+      主要参考：<a href="https://m-index-ng28.com">ng28</a>
+      <span style="margin:0 0.5rem; color:#bcc9d6;">|</span>
+      <span style="color:#5d6877;">内容仅供参考</span>
+    </span>
+  </div>
+
+</div>
+</body>
+</html>
