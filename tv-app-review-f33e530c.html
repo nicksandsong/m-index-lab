@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 资料索引 & 内容推荐平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fbe4d4 0%, #f7d0b0 55%, #f2bc94 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1.25rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 880px;
+            width: 100%;
+        }
+
+        /* 主卡片 */
+        .card {
+            background: #ffffff;
+            border-radius: 36px;
+            box-shadow: 0 18px 40px -12px rgba(160, 90, 60, 0.28),
+                        0 8px 20px -8px rgba(0, 0, 0, 0.06);
+            padding: 2.8rem 2.6rem;
+            margin-bottom: 2.4rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 24px 48px -14px rgba(150, 80, 50, 0.32);
+        }
+
+        /* 标题层次 */
+        .hero-tag {
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #b27a5b;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+        }
+
+        h1 {
+            font-size: 2.35rem;
+            font-weight: 580;
+            color: #3e281e;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+        }
+
+        h1 small {
+            font-weight: 400;
+            font-size: 1.2rem;
+            color: #8f6d57;
+            display: block;
+            margin-top: 0.15rem;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 540;
+            color: #3f2a1f;
+            margin-bottom: 1rem;
+            padding-bottom: 0.45rem;
+            border-bottom: 3px solid #edcbb9;
+            display: inline-block;
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 530;
+            color: #54382b;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            color: #2b1e18;
+            margin-bottom: 1.15rem;
+        }
+
+        /* 内联链接按钮感 */
+        a {
+            color: #974f32;
+            text-decoration: none;
+            font-weight: 520;
+            background: #fceddf;
+            padding: 0.15rem 0.9rem;
+            border-radius: 40px;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+            display: inline-block;
+            border: 1px solid transparent;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        a:hover {
+            background: #e4c1ab;
+            color: #3b2217;
+            border-color: #c28d72;
+            box-shadow: 0 4px 8px rgba(140, 80, 50, 0.12);
+        }
+
+        /* 亮点网格 */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.6rem;
+            margin: 1.8rem 0 0.6rem;
+        }
+
+        .feature-item {
+            background: #fbf3ed;
+            border-radius: 24px;
+            padding: 1.3rem 1.2rem;
+        }
+
+        .feature-item .emoji-bg {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-item strong {
+            display: block;
+            font-weight: 600;
+            color: #3f291e;
+            margin-bottom: 0.2rem;
+        }
+
+        .feature-item p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        /* 场景列表 */
+        .scenario-list {
+            list-style: none;
+            margin: 0.8rem 0 0.2rem;
+        }
+
+        .scenario-list li {
+            position: relative;
+            padding-left: 1.8rem;
+            margin-bottom: 0.8rem;
+            color: #382a22;
+        }
+
+        .scenario-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #b57454;
+            font-size: 1.25rem;
+        }
+
+        /* FAQ 小块 */
+        .faq-group {
+            margin: 1.5rem 0 0.2rem;
+        }
+
+        .faq-q {
+            font-weight: 600;
+            color: #3f2d23;
+            margin-bottom: 0.15rem;
+            font-size: 1.02rem;
+        }
+
+        .faq-a {
+            padding-left: 0.4rem;
+            border-left: 3px solid #e7c6b2;
+            margin-bottom: 1.2rem;
+            color: #372a23;
+        }
+
+        .faq-a p {
+            margin-bottom: 0.4rem;
+        }
+
+        /* 提示／访问说明 */
+        .info-note {
+            background: #f7ece4;
+            border-radius: 28px;
+            padding: 1.2rem 1.6rem;
+            margin: 1.6rem 0 0.2rem;
+            font-size: 0.96rem;
+            border: 1px solid #e5cdbc;
+        }
+
+        .info-note strong {
+            color: #4f3426;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px dashed #dec5b3;
+            margin: 1.6rem 0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+
+            .card {
+                padding: 1.8rem 1.2rem;
+                border-radius: 28px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .grid-2col {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            a {
+                white-space: normal;
+                padding: 0.1rem 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- HERO + 摘要 -->
+    <div class="card">
+        <div class="hero-tag">内容索引 · 信息组织</div>
+        <h1>爱游戏<small>不只是推荐，更是资料的整理与复用</small></h1>
+        <p style="font-size:1.05rem;">以资料整理和信息索引为切入点，<a href="https://tv-app-igame.com">爱游戏</a>致力于将分散的游戏内容、版本动态、玩法说明整合为结构化的知识节点。不再依靠算法单一推送，而是让用户像翻阅手册一样检索自己需要的游戏信息。</p>
+        <p>从独立作品到经典系列，从操作指引到背景考据，平台保持克制的编辑视角，优先呈现可验证的原始信息。你可以将这里看作一个持续更新的主题资料库，而非简单的游戏列表。</p>
+    </div>
+
+    <!-- 亮点卡片 -->
+    <div class="card">
+        <h2>▼ 信息组织方式</h2>
+        <div class="grid-2col">
+            <div class="feature-item">
+                <span class="emoji-bg">🗂️</span>
+                <strong>主题索引</strong>
+                <p>每个游戏条目都按类型、年代、机制进行标签化归类，并提供关联条目跳转，便于横向对比。</p>
+            </div>
+            <div class="feature-item">
+                <span class="emoji-bg">📋</span>
+                <strong>版本记录</strong>
+                <p>收录主要版本的更新说明与改动摘要，帮助判断何时值得重新体验某一作品。</p>
+            </div>
+            <div class="feature-item">
+                <span class="emoji-bg">🧩</span>
+                <strong>术语解释</strong>
+                <p>遇到专有名词或系统机制？内置简易词条，无需离开当前页面即可理解上下文。</p>
+            </div>
+            <div class="feature-item">
+                <span class="emoji-bg">🔗</span>
+                <strong>引用来源</strong>
+                <p>每个信息片段尽可能标注原始出处（公告、采访、更新日志），方便深度核查。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 使用建议 / 场景 -->
+    <div class="card">
+        <h2>▼ 典型使用场景</h2>
+        <ul class="scenario-list">
+            <li><strong>回顾老作品：</strong>想找回某款多年前的游戏，但又记不清全称 —— 通过系列条目或年代索引快速定位。</li>
+            <li><strong>比对版本差异：</strong>犹豫是否要入手重制版或终极版，先查阅版本功能对照表再决定。</li>
+            <li><strong>查找基础操作：</strong>首次接触某系列作品，通过操作专题页了解通用键位与系统逻辑。</li>
+            <li><strong>了解设定背景：</strong>对剧情世界观感兴趣，索引页面通常包含不涉及核心剧情的背景摘要。</li>
+        </ul>
+        <p style="margin-top:0.8rem;">使用 <a href="https://tv-app-igame.com">爱游戏</a> 时，建议配合平台内置的筛选面板（按标签、时间、热度）缩小范围，资料卡片标题即为核心摘要，点击后可展开完整条目。</p>
+    </div>
+
+    <!-- FAQ 摘要 + 访问说明 -->
+    <div class="card">
+        <h2>▼ 常见疑问摘要</h2>
+        <div class="faq-group">
+            <div class="faq-q">Q：信息更新频率如何？</div>
+            <div class="faq-a"><p>主要条目按季度复核，重大版本更新通常会在两周内补充。部分冷门作品可能保持半年更新周期，但所有页面均标注最后修订日期。</p></div>
+
+            <div class="faq-q">Q：是否包含用户评论或论坛内容？</div>
+            <div class="faq-a"><p>平台以资料汇编为主，不设开放评论区，避免信息噪音。部分页面底部会整理来自官方社区的引用片段，且标明来源。</p></div>
+
+            <div class="faq-q">Q：可以直接引用平台内容吗？</div>
+            <div class="faq-a"><p>每一条目均以合理引用为原则，建议直接参考原始链接。平台本身不主张独占版权，但转载时请保留原出处标记。</p></div>
+        </div>
+
+        <!-- 克制的访问说明 -->
+        <div class="info-note">
+            <strong>📎 访问说明</strong>  ——  <a href="https://tv-app-igame.com">爱游戏</a> 是一个内容整理与索引站点，不提供游戏下载、破解或账号交易。所有信息均来自公开可查的渠道，页面中出现的链接会导向相应的官方公告、维基条目或媒体报导。建议使用现代浏览器访问，以获得卡片与标签筛选项的最佳显示效果。
+        </div>
+        <hr>
+        <p style="font-size:0.9rem; color:#654b3c; margin-bottom:0;">资料整理的目的不是代替体验，而是降低信息检索的阻力。如果你恰好需要系统性地了解某个游戏或系列，不妨从这里开始梳理线索。</p>
+    </div>
+
+</div>
+</body>
+</html>
