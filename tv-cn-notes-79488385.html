@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于爱游戏 · 站点介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #faf8f5;
+            font-family: "Noto Serif SC", "Source Han Serif SC", "Times New Roman", "宋体", serif;
+            color: #2c2b28;
+            line-height: 1.8;
+            padding: 3rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .page-container {
+            max-width: 780px;
+            width: 100%;
+        }
+        /* 文章标题区 */
+        .article-header {
+            margin-bottom: 2.8rem;
+            border-bottom: 2px solid #d6cdbc;
+            padding-bottom: 1.2rem;
+        }
+        .article-header h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: #2a241e;
+            margin-bottom: 0.4rem;
+        }
+        .article-header .meta {
+            font-size: 0.9rem;
+            color: #7d7468;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1.5rem;
+            margin-top: 0.3rem;
+        }
+        .article-header .meta span {
+            background: transparent;
+        }
+        /* 导语 */
+        .lead {
+            font-size: 1.1rem;
+            color: #3f3b35;
+            background: #f3efe9;
+            padding: 0.8rem 1.4rem;
+            border-left: 5px solid #b0a18e;
+            margin-bottom: 2rem;
+            border-radius: 0 6px 6px 0;
+        }
+        /* 正文段落 */
+        p {
+            margin-bottom: 1.4rem;
+            text-align: justify;
+            font-size: 1rem;
+        }
+        /* 引用块（提示框/引用） */
+        .insight-box {
+            background: #ede8df;
+            padding: 1.2rem 1.6rem;
+            margin: 1.8rem 0 2.2rem 0;
+            border-radius: 10px;
+            border-left: 6px solid #8b7e6b;
+            font-style: normal;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+        .insight-box strong {
+            color: #4d4238;
+            display: block;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+        .insight-box .quote-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #3d3730;
+        }
+        /* 特点简洁列表（融合在文章内） */
+        .feature-inline {
+            background: #f6f2eb;
+            padding: 1rem 1.6rem;
+            border-radius: 10px;
+            margin: 1.6rem 0 2rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1.2rem;
+        }
+        .feature-inline .item {
+            background: #e5ddd2;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: #302b25;
+            white-space: nowrap;
+        }
+        /* FAQ 摘要 */
+        .faq-mini {
+            margin-top: 2.4rem;
+            border-top: 1px solid #dcd3c6;
+            padding-top: 1.8rem;
+        }
+        .faq-mini h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #3d352c;
+            margin-bottom: 1rem;
+            letter-spacing: 0.6px;
+        }
+        .faq-item {
+            margin-bottom: 0.9rem;
+        }
+        .faq-item .q {
+            font-weight: 600;
+            color: #3b3228;
+            display: block;
+            margin-bottom: 0.1rem;
+        }
+        .faq-item .a {
+            color: #5c5348;
+            padding-left: 0.8rem;
+            border-left: 2px solid #cbbca9;
+            margin-top: 0.1rem;
+        }
+        /* 访问句 / 链接自然嵌入 */
+        .visit-sentence {
+            background: #e7e0d6;
+            padding: 1rem 1.6rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 2.2rem 0 1rem 0;
+            font-size: 1rem;
+            display: inline-block;
+            width: auto;
+        }
+        .visit-sentence a {
+            color: #4d3e2e;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid #a6937c;
+            padding-bottom: 1px;
+            transition: border-color 0.15s;
+        }
+        .visit-sentence a:hover {
+            border-bottom-color: #4d3e2e;
+        }
+        /* 普通链接样式（题目要求只有特定 a 标签文本） */
+        a {
+            color: #5f4f3a;
+            text-decoration: none;
+            border-bottom: 1px solid #b8aa97;
+        }
+        a:hover {
+            color: #2f261d;
+        }
+        /* 响应式 */
+        @media (max-width: 600px) {
+            body {
+                padding: 1.8rem 1rem;
+            }
+            .article-header h1 {
+                font-size: 1.7rem;
+            }
+            .feature-inline .item {
+                white-space: normal;
+                font-size: 0.85rem;
+            }
+            .visit-sentence {
+                padding: 0.8rem 1.2rem;
+                border-radius: 30px 10px 10px 30px;
+            }
+        }
+        /* 装饰水平线 */
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: #cbbca9;
+            margin: 1.2rem 0 1.8rem 0;
+        }
+        /* 图片占位无实际图片 */
+        .note {
+            font-size: 0.85rem;
+            color: #7a7166;
+        }
+    </style>
+</head>
+<body>
+<div class="page-container">
+    <!-- 文章标题 -->
+    <div class="article-header">
+        <h1>爱游戏 · 站点定位与可信说明</h1>
+        <div class="meta">
+            <span>站务简报</span>
+            <span>·</span>
+            <span>2025年4月</span>
+            <span>·</span>
+            <span>信息页</span>
+        </div>
+    </div>
+
+    <!-- 导语 -->
+    <div class="lead">
+        一个以游戏内容聚合与导航为出发点的中文站点，不预设立场，不包装夸张承诺，仅提供经过筛选的指向与基础信息框架。以下从站点结构、内容可信度与常见疑问三个层面展开。
+    </div>
+
+    <!-- 正文段落1：站点介绍与背景 -->
+    <p>
+        <strong>爱游戏</strong> 并非一个全新面孔的社区，它更接近于一个轻量级的信息中转站——汇集了若干游戏资讯、工具链接与分类索引，适合对特定类型作品有查找需求的玩家快速浏览。站内内容主要围绕多平台游戏（PC、主机、移动端）的新闻摘要、评测短文以及专题列表展开，更新节奏保持每周数次，不追求海量堆砌，而是侧重实用性。
+    </p>
+    <p>
+        从运营逻辑来看，站点编辑团队刻意控制了广告与推广位数量，避免干扰阅读。页面结构偏向传统文章列表式，未使用大图轮播或弹窗引导，这种克制在一定程度上增强了浏览的舒适度。对于初次接触的用户，可以将其视作一个「游戏信息锚点」，而非综合门户。
+    </p>
+
+    <!-- 引用提示框 -->
+    <div class="insight-box">
+        <strong>▎ 可信度说明</strong>
+        <div class="quote-text">
+            站内资讯均标注来源或原文链接，未标注的原创内容会以「编辑短评」形式区分。历史更新记录保留在页面底部，便于回溯。未发现诱导分享或虚假时效标签，整体信息呈现较为透明。
+        </div>
+    </div>
+
+    <!-- 内嵌特点标签（融合在文章段落之间） -->
+    <div class="feature-inline">
+        <span class="item">📋 评测摘要</span>
+        <span class="item">📁 专题索引</span>
+        <span class="item">🔗 外链导航</span>
+        <span class="item">📆 周更资讯</span>
+        <span class="item">🧾 来源标注</span>
+    </div>
+
+    <!-- 正文段落2：具体内容方向与用例 -->
+    <p>
+        目前站内设有「新游速递」「独立游戏聚焦」「经典回顾」三个主要栏目，每个栏目下以短条目或简评形式呈现。例如「独立游戏聚焦」会收录近三个月内值得关注的像素风、叙事向或机制创新作品，并附上 Steam 或 itch.io 链接。这种轻整理模式能节省玩家自行搜索的时间，同时也避免了信息过载。
+    </p>
+    <p>
+        另外，站内还提供一份持续维护的「游戏媒体 / 工具清单」，收录了包括评测站、数据查询网站、Mod 社区等资源，每个条目均附带一句功能说明。该清单不设排行榜，仅按类型分组，适合作为日常逛站的手边参考。
+    </p>
+
+    <!-- FAQ 摘要（不是完整FAQ，只是摘要） -->
+    <div class="faq-mini">
+        <h3>常见疑问摘要</h3>
+        <div class="faq-item">
+            <span class="q">Q：网站内容是否保持中立？</span>
+            <div class="a">每一篇测评或推荐均注明主观或客观部分，不隐藏赞助或合作信息，目前未发现软文迹象。</div>
+        </div>
+        <div class="faq-item">
+            <span class="q">Q：信息更新频率如何？</span>
+            <div class="a">新闻类栏目每周更新 2-3 次，专题列表每月修订，资源清单每季度核对一次失效链接。</div>
+        </div>
+        <div class="faq-item">
+            <span class="q">Q：是否有社区或评论区？</span>
+            <div class="a">暂时未开放用户注册与评论，以单向内容输出为主，未来可能增加反馈渠道。</div>
+        </div>
+        <div class="note" style="margin-top:0.8rem;">— 详细 FAQ 可直接浏览站点底部帮助页 —</div>
+    </div>
+
+    <!-- 访问句 (自然嵌入a标签) -->
+    <div class="visit-sentence">
+        📌 若想进一步了解站点内容结构或浏览近期游戏条目，可直接前往 <a href="https://tv-cn-igame.com">爱游戏</a> 查看完整文章与索引。
+    </div>
+
+    <!-- 额外的引用提示（第二个引用块，风格小变） -->
+    <div class="insight-box" style="border-left-color: #a28b72; background: #f1ece3;">
+        <strong>▎ 使用建议</strong>
+        <div class="quote-text">
+            建议先浏览「新游速递」与「独立游戏聚焦」两个栏目，后者更新更稳定。如果遇到失效外链，可通过站内“报告链接”按钮反馈，维护响应一般在 48 小时内。
+        </div>
+    </div>
+
+    <!-- 结尾段 -->
+    <div class="divider"></div>
+    <p style="font-size:0.95rem; color: #4f483e;">
+        总而言之，<strong>爱游戏</strong> 作为一个小型游戏信息节点，其价值在于克制的编辑风格与可追溯的信息源。如果你对泛滥的夸张推荐感到疲惫，这里或许能提供一种更平实的浏览体验。站点仍在逐步完善，内容覆盖面也将随运营节奏扩展。
+    </p>
+    <!-- 最后一行纯装饰, 不包含额外链接 -->
+</div>
+</body>
+</html>
