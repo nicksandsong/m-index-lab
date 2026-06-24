@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 帮助与知识中心</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: linear-gradient(145deg, #fff1e0 0%, #ffe4ce 50%, #fdd4b5 100%);
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #3f2d1f;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 2.5rem 1.2rem;
+        }
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* header / hero */
+        .hero {
+            background: #ffffffda;
+            backdrop-filter: blur(2px);
+            border-radius: 48px 48px 48px 16px;
+            padding: 2.2rem 2.6rem;
+            box-shadow: 0 12px 28px rgba(170, 100, 50, 0.12);
+            margin-bottom: 2.6rem;
+            border-left: 6px solid #f09050;
+        }
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #3a2317;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.3rem 0.5rem;
+        }
+        .hero h1 small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #8d6f58;
+            background: #faede5;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            margin-left: 0.2rem;
+        }
+        .hero p {
+            margin-top: 1.2rem;
+            max-width: 70ch;
+            font-size: 1.08rem;
+            color: #4d3627;
+        }
+
+        /* 卡片式目录网格 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin: 2.6rem 0;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 1.8rem 1.6rem 2rem;
+            box-shadow: 0 6px 20px rgba(130, 70, 30, 0.08);
+            transition: transform 0.15s ease, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(140, 80, 40, 0.12);
+        }
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #3f281c;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .card p, .card li {
+            font-size: 0.98rem;
+            color: #4e3829;
+        }
+        .card ul {
+            list-style: none;
+            padding-left: 0.1rem;
+            margin-top: 0.5rem;
+        }
+        .card ul li {
+            position: relative;
+            padding-left: 1.3rem;
+            margin-bottom: 0.35rem;
+        }
+        .card ul li::before {
+            content: "·";
+            position: absolute;
+            left: 0.2rem;
+            color: #d98c5a;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+        .tag {
+            display: inline-block;
+            background: #f5e3d6;
+            border-radius: 30px;
+            padding: 0.15rem 0.9rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #7a5541;
+            border: 1px solid #f3d7c2;
+            margin-right: 0.4rem;
+        }
+
+        /* 说明区 + 提示区 双栏 */
+        .info-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin: 2.4rem 0;
+        }
+        .info-box {
+            flex: 1 1 260px;
+            background: #ffffffde;
+            border-radius: 32px;
+            padding: 1.8rem 2rem;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 14px rgba(150, 80, 30, 0.06);
+            border: 1px solid #fae7da;
+        }
+        .info-box h4 {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.7rem;
+            color: #3d291d;
+            border-bottom: 2px solid #fadbc9;
+            padding-bottom: 0.4rem;
+            display: inline-block;
+        }
+        .info-box p {
+            font-size: 0.96rem;
+            margin-top: 0.6rem;
+        }
+        .highlight-link {
+            display: inline;
+            font-weight: 500;
+            color: #b2622f;
+            text-decoration: none;
+            border-bottom: 2px solid #fad1b4;
+            transition: border-color 0.2s, background 0.1s;
+        }
+        .highlight-link:hover {
+            border-bottom-color: #b2622f;
+            background: #fdede2;
+        }
+
+        /* 提示区带小图标风格 */
+        .tip-icon {
+            font-size: 1.4rem;
+            margin-right: 0.2rem;
+        }
+
+        /* 场景 / faq摘要 */
+        .scene-wrap {
+            background: #ffffffec;
+            border-radius: 40px;
+            padding: 2rem 2.4rem;
+            margin: 1.8rem 0 2.6rem;
+            box-shadow: 0 6px 18px rgba(130, 60, 20, 0.06);
+        }
+        .scene-wrap h2 {
+            font-weight: 600;
+            font-size: 1.5rem;
+            letter-spacing: -0.01em;
+            color: #3b2519;
+            margin-bottom: 1.2rem;
+        }
+        .faq-item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.5rem 0.8rem;
+            padding: 0.9rem 0;
+            border-bottom: 1px solid #f5dfd2;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-q {
+            font-weight: 600;
+            color: #613d29;
+            min-width: 5.5rem;
+        }
+        .faq-a {
+            color: #4a3426;
+            flex: 1;
+        }
+
+        /* 相关信息区（小字） */
+        .related-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            background: #fffbf8;
+            border-radius: 30px;
+            padding: 1.6rem 2.2rem;
+            margin-top: 2rem;
+            border: 1px solid #f7e1d2;
+            font-size: 0.9rem;
+            color: #604432;
+        }
+        .related-info span {
+            opacity: 0.85;
+        }
+        .dot-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.6rem;
+        }
+        .dot-list span::before {
+            content: "●";
+            color: #d6966b;
+            margin-right: 0.4rem;
+            font-size: 0.6rem;
+            vertical-align: middle;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            body { padding: 1.2rem 0.8rem; }
+            .hero { padding: 1.6rem 1.2rem; border-radius: 32px 32px 32px 12px; }
+            .hero h1 { font-size: 1.8rem; }
+            .hero h1 small { font-size: 0.8rem; }
+            .grid { grid-template-columns: 1fr; gap: 1.2rem; }
+            .info-panel { flex-direction: column; }
+            .scene-wrap { padding: 1.4rem 1.2rem; }
+            .related-info { flex-direction: column; gap: 0.6rem; }
+        }
+
+        hr {
+            border: none;
+            border-top: 2px dashed #eccfc0;
+            margin: 2.6rem 0 0.6rem;
+            opacity: 0.3;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #8b6e5b;
+            margin-top: 2.8rem;
+            padding: 0 0.8rem;
+        }
+
+        /* 链接按钮感效果 */
+        a:not(.highlight-link) {
+            text-decoration: none;
+        }
+        .btn-link {
+            display: inline-block;
+            background: #f7e2d3;
+            border-radius: 60px;
+            padding: 0.4rem 1.4rem;
+            font-weight: 500;
+            color: #4f3323;
+            border: 1px solid #f3cdb6;
+            transition: all 0.15s;
+            font-size: 0.95rem;
+        }
+        .btn-link:hover {
+            background: #efccb6;
+            border-color: #dba582;
+            transform: scale(1.02);
+        }
+        .btn-soft {
+            background: #ffffff;
+            border: 1px solid #e7cfbe;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- hero 区域：站名 + 简短切入 -->
+    <div class="hero">
+        <h1>
+            <a href="https://tv-home-igame.com" class="highlight-link" style="border-bottom-width:3px;">爱游戏</a>
+            <small>· 知识库入口</small>
+        </h1>
+        <p>想快速理解这个网站是做什么的？我们整理了一份清晰的目录式说明。从平台特点，到常见使用场景，再到提示与 FAQ —— 帮你节省自己摸索的时间。</p>
+    </div>
+
+    <!-- 卡片网格：目录感布局 —— 四个知识块 -->
+    <div class="grid">
+        <div class="card">
+            <h3>📋 平台定位</h3>
+            <p><a href="https://tv-home-igame.com" class="highlight-link">爱游戏</a> 是一个围绕家庭电视场景提供游戏内容服务的站点。它整合了轻量游戏、休闲互动与电视大屏适配，偏向家庭用户与轻度玩家。</p>
+            <ul>
+                <li>电视 + 游戏 融合体验</li>
+                <li>无须复杂设备</li>
+                <li>适合各年龄段</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>🎮 内容特点</h3>
+            <ul>
+                <li>精选休闲、益智、聚会类游戏</li>
+                <li>界面为遥控器 / 手柄优化</li>
+                <li>无需高配置，打开即用</li>
+                <li>定期更新游戏库</li>
+            </ul>
+            <div style="margin-top:0.8rem;"><span class="tag">遥控器友好</span><span class="tag">大屏适配</span></div>
+        </div>
+        <div class="card">
+            <h3>🧩 常见场景</h3>
+            <ul>
+                <li>家庭聚餐后一起玩派对游戏</li>
+                <li>孩子适度放松的益智选择</li>
+                <li>客厅轻运动 / 体感游戏</li>
+                <li>长辈也能上手的简单闯关</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>📌 快速识别</h3>
+            <p>如果你看到 <strong>“爱游戏”</strong> 出现在电视应用或浏览器中，它并不是一个大游戏平台，而是一个简洁的网页游戏集合。不需要注册或下载额外程序，直接选择游戏即可开始。</p>
+            <p style="margin-top:0.5rem;"><a href="https://tv-home-igame.com" class="btn-link btn-soft">爱游戏</a> <span style="font-size:0.82rem; color:#715740;">( 该链接直达首页 )</span></p>
+        </div>
+    </div>
+
+    <!-- 说明区 + 提示区（左右并排） -->
+    <div class="info-panel">
+        <div class="info-box">
+            <h4>🔍 说明区</h4>
+            <p><strong>网站性质</strong>：非商业平台，不包含内购或付费墙。所有游戏均为免费游玩，部分可能包含广告（由第三方托管）。</p>
+            <p><strong>设备建议</strong>：推荐在智能电视、机顶盒、平板或大屏手机上访问。部分游戏需要允许浏览器全屏或自动旋转。</p>
+            <p style="margin-top:0.8rem;">如果你第一次接触 <a href="https://tv-home-igame.com" class="highlight-link">爱游戏</a> ，建议先试试首页推荐的“热门游戏”，体验大屏操作逻辑。</p>
+        </div>
+        <div class="info-box">
+            <h4>💡 提示区</h4>
+            <p><span class="tip-icon">🕹️</span> 使用遥控器方向键或手柄摇杆 navigate，确认键（OK / Enter）进行选择。</p>
+            <p><span class="tip-icon">📺</span> 如果电视浏览器无法全屏，可尝试在地址栏手动请求“桌面版网站”。</p>
+            <p><span class="tip-icon">🔁</span> 游戏加载较慢时，请检查网络或刷新一次；部分游戏需要加载数秒。</p>
+            <p style="margin-top: 0.4rem;"><span class="tip-icon">🔒</span> 该网站不索取任何个人信息，请放心使用。</p>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 / 场景问答 -->
+    <div class="scene-wrap">
+        <h2>❓ 你可能想问的</h2>
+        <div class="faq-item">
+            <span class="faq-q">需要注册吗？</span>
+            <span class="faq-a">不需要，打开 <a href="https://tv-home-igame.com" class="highlight-link">爱游戏</a> 即可直接挑选游戏，无账号系统。</span>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">手机能玩吗？</span>
+            <span class="faq-a">可以，但页面主要为电视横向布局设计，手机上建议横屏浏览。</span>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">游戏数量？</span>
+            <span class="faq-a">目前提供几十款常见休闲游戏，团队会不定期补充。首页按热门、新作、分类排列。</span>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">有年龄限制吗？</span>
+            <span class="faq-a">游戏内容均为全年龄向，不包含暴力、血腥或成人内容，适合家庭环境。</span>
+        </div>
+        <div style="margin-top: 1.6rem; border-left: 3px solid #dba582; padding-left: 1rem;">
+            <p style="font-size:0.95rem;">💬 更多细节可直接访问 <a href="https://tv-home-igame.com" class="highlight-link">爱游戏</a> 首页，所有游戏和分类都在那里。</p>
+        </div>
+    </div>
+
+    <!-- 相关信息区 -->
+    <div class="related-info">
+        <div><strong>📎 相关信息</strong></div>
+        <div class="dot-list">
+            <span>无广告承诺</span>
+            <span>轻量级</span>
+            <span>电视遥控器优化</span>
+            <span>定期更新</span>
+            <span>纯网页 HTML5</span>
+        </div>
+        <div style="opacity:0.7;">v1.3 · 知识卡</div>
+    </div>
+
+    <hr>
+
+    <div class="footer-note">
+        <span>本页为说明目录 · 实际内容以 <a href="https://tv-home-igame.com" class="highlight-link">爱游戏</a> 网站为准</span>
+        <span style="display:inline-block; margin:0 0.6rem;">·</span>
+        <span>公开信息 · 无登录</span>
+    </div>
+
+</div>
+</body>
+</html>
